@@ -1,0 +1,49 @@
+/* FAQs.css */
+
+.centered-content {
+    max-width: 800px; /* Limit the width for better readability */
+    margin: 0 auto; /* Center the content */
+    padding: 1rem; /* Add some padding */
+    color: #ffffff; /* Set text color to white */
+  }
+  
+  h2 {
+    text-align: center; /* Center the heading */
+    margin-bottom: 1.5rem; /* Space below the heading */
+  }
+  
+  .faq-item {
+    margin: 1.5rem 0; /* Space between FAQ items */
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow */
+    transition: background-color 0.3s; /* Smooth background transition */
+  }
+  
+  .faq-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Change background on hover */
+  }
+  
+  .faq-question {
+    font-weight: bold; /* Bold text for questions */
+    cursor: pointer; /* Pointer cursor on hover */
+    padding: 1rem; /* Padding for clickable area */
+    margin: 0; /* Remove default margin */
+    background-color: #123456; /* Match the background color */
+    transition: background-color 0.3s; /* Smooth transition for background */
+  }
+  
+  .faq-question:hover {
+    background-color: #0f2a3e; /* Darker shade on hover */
+  }
+  
+  .faq-answer {
+    color: #ffffff; /* White text for answers */
+    padding: 0 1rem 1rem; /* Padding for answers */
+    display: none; /* Initially hidden */
+    transition: max-height 0.3s ease; /* Smooth transition for height */
+  }
+  
+  .faq-answer.active {
+    display: block; /* Show answer when active */
+  }

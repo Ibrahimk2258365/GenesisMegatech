@@ -1,0 +1,71 @@
+/* Projects.css */
+
+.centered-content {
+    max-width: 1200px; /* Limit the width for better readability */
+    margin: 0 auto; /* Center the content */
+    padding: 1.5rem; /* Add some padding */
+    color: #ffffff; /* Set text color */
+  }
+  
+  h2 {
+    text-align: center; /* Center the heading */
+    margin-bottom: 1rem; /* Space below the heading */
+    font-size: 2.5rem; /* Larger font size for the title */
+  }
+  
+  p {
+    text-align: center; /* Center paragraph text */
+    margin-bottom: 2rem; /* Space below paragraphs */
+    font-size: 1.1rem; /* Slightly larger font size */
+  }
+  
+  .error-message {
+    color: #ff0000; /* Red color for error messages */
+    text-align: center; /* Center error message */
+    margin-bottom: 1rem; /* Space below error message */
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 1.5rem; /* Space between grid items */
+    margin-top: 2rem; /* Space above the grid */
+  }
+  
+  .project-item {
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    padding: 1rem; /* Padding inside project items */
+    text-align: center; /* Center text */
+    background-color: #ffffff; /* White background */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  .project-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+  }
+  
+  .project-image {
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for images */
+    margin-bottom: 0.5rem; /* Space below images */
+    transition: transform 0.3s; /* Smooth scaling effect */
+  }
+  
+  .project-item:hover .project-image {
+    transform: scale(1.05); /* Scale image on hover */
+  }
+  
+  .project-title {
+    font-size: 1.5rem; /* Font size for project titles */
+    margin-top: 0.5rem; /* Space above titles */
+  }
+  
+  .project-description {
+    font-size: 1rem; /* Font size for descriptions */
+    color: #777; /* Gray color for descriptions */
+    margin-top: 0.5rem; /* Space above descriptions */
+  }

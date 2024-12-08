@@ -1,0 +1,77 @@
+.centered-content {
+      width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* background-color: #0a027c; */
+  }
+
+
+h1, h2, h3 {
+  text-align: center; /* Center the headings */
+  margin-bottom: 1rem; /* Space below headings */
+}
+
+h1 {
+  font-size: 2.5rem; /* Larger font size for main title */
+}
+
+h2 {
+  font-size: 2rem; /* Slightly smaller for subtitle */
+}
+
+h3 {
+  font-size: 1.5rem; /* Size for key highlights */
+}
+
+img {
+  border-radius: 10px; /* Rounded corners for images */
+  transition: transform 0.3s; /* Smooth scaling effect */
+}
+
+img:hover {
+  transform: scale(1.05); /* Scale image on hover */
+}
+
+p {
+  line-height: 1.6; /* Improve readability */
+  margin: 0.5rem 0; /* Space between paragraphs */
+}
+
+ul {
+  list-style-type: disc; /* Default bullet points */
+  padding-left: 1.5rem; /* Indent the list */
+}
+
+.call-to-action {
+  text-align: center; /* Center the call-to-action */
+  margin-top: 2rem; /* Space above the CTA */
+}
+
+.cta-button {
+  display: inline-block; /* Make the link a block element */
+  padding: 0.75rem 1.5rem; /* Padding for the button */
+  background-color: #ff5722; /* Button color */
+  color: #ffffff; /* Text color */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+.cta-button:hover {
+  background-color: #e64a19; /* Darker shade on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.error {
+  color: #ff0000; /* Red color for error messages */
+  text-align: center; /* Center error message */
+}
+  
