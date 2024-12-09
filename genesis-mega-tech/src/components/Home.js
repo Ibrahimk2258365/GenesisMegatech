@@ -24,31 +24,40 @@ const Home = () => {
   }
 
   if (!homeData) {
-    return <div className="centered-content">Loading...</div>; // Show loading state
+    return <div className="centered-content">Loading...</div>;
   }
 
   return (
     <div className="centered-content">
-      <h1>{homeData.title}</h1>
-      <h2>{homeData.subtitle}</h2>
-      <img
-        src={homeData.bannerImageUrl}
-        alt="Banner"
-        style={{
-          width: '100%',
-          maxHeight: '400px',
-          objectFit: 'cover',
-          borderRadius: '10px',
-        }}
-      />
-      <p>{homeData.missionStatement}</p>
-      <p>{homeData.visionStatement}</p>
-      <h3>Key Highlights:</h3>
-      <ul>
-        {homeData.keyHighlights.map((highlight, index) => (
-          <li key={index}>{highlight}</li>
-        ))}
-      </ul>
+      <div className="section banner">
+        <h1>{homeData.title}</h1>
+        <h2>{homeData.subtitle}</h2>
+        <img
+          src={homeData.bannerImageUrl}
+          alt="Banner"
+          className="banner-image"
+        />
+      </div>
+
+      <div className="section">
+        <h3>Mission</h3>
+        <p>{homeData.missionStatement}</p>
+      </div>
+
+      <div className="section">
+        <h3>Vision</h3>
+        <p>{homeData.visionStatement}</p>
+      </div>
+
+      <div className="section">
+        <h3>Key Highlights</h3>
+        <ul>
+          {homeData.keyHighlights.map((highlight, index) => (
+            <li key={index}>{highlight}</li>
+          ))}
+        </ul>
+      </div>
+
       <div className="call-to-action">
         <a
           href={homeData.callToActionLink}

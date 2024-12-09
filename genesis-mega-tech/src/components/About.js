@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { getAbout } from '../services/api'; // Adjust path as needed
 import './About.css'; // Import the CSS file
 
-
 const About = () => {
   const [aboutData, setAboutData] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
@@ -33,42 +32,37 @@ const About = () => {
       <h2>About {aboutData.companyName}</h2>
       <p>{aboutData.introductionText}</p>
 
-      {/* {aboutData.mediaUrls && aboutData.mediaUrls.length > 0 && (
-        <img
-          src={aboutData.mediaUrls[0]} // Use the first media URL as an example
-          alt="About Us"
-          className="about-image"
-          style={{
-            width: '100%',
-            maxWidth: '600px',
-            margin: '20px 0',
-          }}
-        />
-      )} */}
+      <div className="section">
+        <h3>Mission</h3>
+        <p>{aboutData.mission}</p>
+      </div>
 
-      <h3>Mission</h3>
-      <p>{aboutData.mission}</p>
+      <div className="section">
+        <h3>Vision</h3>
+        <p>{aboutData.vision}</p>
+      </div>
 
-      <h3>Vision</h3>
-      <p>{aboutData.vision}</p>
+      <div className="section">
+        <h3>Core Values</h3>
+        <ul>
+          {aboutData.coreValues.map((value, index) => (
+            <li key={index}>{value}</li>
+          ))}
+        </ul>
+      </div>
 
-      <h3>Core Values</h3>
-      <ul>
-        {aboutData.coreValues.map((value, index) => (
-          <li key={index}>{value}</li>
-        ))}
-      </ul>
-
-      <h3>Our History</h3>
-      <p>
-        Established in {aboutData.history.establishedYear}, our company has
-        achieved the following milestones:
-      </p>
-      <ul>
-        {aboutData.history.achievements.map((achievement, index) => (
-          <li key={index}>{achievement}</li>
-        ))}
-      </ul>
+      <div className="section">
+        <h3>Our History</h3>
+        <p>
+          Established in {aboutData.history.establishedYear}, our company has
+          achieved the following milestones:
+        </p>
+        <ul>
+          {aboutData.history.achievements.map((achievement, index) => (
+            <li key={index}>{achievement}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
