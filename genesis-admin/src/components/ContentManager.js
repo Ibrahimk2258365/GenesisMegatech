@@ -15,6 +15,7 @@ const ContentManager = () => {
   });
 
   const [isEdit, setIsEdit] = useState(false);
+  const [status, setStatus] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -36,6 +37,7 @@ const ContentManager = () => {
         }
       } catch (error) {
         console.error('Error fetching content:', error);
+        setStatus('Failed to load content.');
       }
     })();
   }, []);
@@ -66,20 +68,21 @@ const ContentManager = () => {
     try {
       if (isEdit) {
         await updateContent(formData);
-        alert('Content updated successfully!');
+        setStatus('Content updated successfully!');
       } else {
         await createContent(formData);
-        alert('Content created successfully!');
+        setStatus('Content created successfully!');
         setIsEdit(true);
       }
     } catch (error) {
-      alert('An error occurred while saving content.');
+      setStatus('An error occurred while saving content.');
     }
   };
 
   return (
     <div className="content-manager-container">
       <h2>{isEdit ? 'Edit' : 'Create'} Content</h2>
+      {status && <p className="status-message">{status}</p>}
       <form onSubmit={handleSubmit} className="content-form">
         {Object.keys(formData).map((key) => (
           <div className="form-group" key={key}>
@@ -101,13 +104,15 @@ const ContentManager = () => {
                     >
                       ❌
                     </span>
-                    <span className="icon add-icon" onClick={addKeyHighlight} title="Add Highlight">
-                ➕
-                </span>
                   </div>
                 ))}
-                
-
+                <button
+                  type="button"
+                  className="add-highlight-button"
+                  onClick={addKeyHighlight}
+                >
+                  Add Highlight
+                </button>
               </>
             ) : key.includes('Statement') ? (
               <textarea
@@ -129,7 +134,9 @@ const ContentManager = () => {
             )}
           </div>
         ))}
-        <button type="submit">{isEdit ? 'Update' : 'Create'} Content</button>
+        <button type="submit" className="submit-button">
+          {isEdit ? 'Update' : 'Create'} Content
+        </button>
       </form>
     </div>
   );

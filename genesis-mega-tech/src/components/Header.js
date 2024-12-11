@@ -9,6 +9,8 @@ const Header = () => {
         <div className="container">
           <a className="navbar-brand d-flex align-items-center" href="/">
             <img
+            style={{background:"#fff",borderRadius:"22%"
+            }}
               src="/logo.png"
               alt="Logo"
               className="navbar-logo"
