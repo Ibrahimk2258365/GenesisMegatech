@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { FaPlus } from 'react-icons/fa'; // Import the FaPlus icon
+import { FaPlus, FaEdit, FaTrash, FaTimes } from 'react-icons/fa'; // Importing the edit, delete, and remove icons
 
 import {
   createTeamMember,
@@ -47,6 +47,7 @@ const TeamMemberForm = () => {
   const fetchAllTeamMembers = async () => {
     try {
       const data = await getTeamMembers();
+      console.log(data); // Debugging: Log the fetched data to verify
       setTeamMembers(data);
     } catch (error) {
       setErrorMessage('Failed to fetch team members.');
@@ -78,6 +79,11 @@ const TeamMemberForm = () => {
     setFormData((prev) => ({ ...prev, expertise: [...prev.expertise, ''] }));
   };
 
+  const removeExpertiseField = (index) => {
+    const updatedExpertise = formData.expertise.filter((_, i) => i !== index);
+    setFormData((prev) => ({ ...prev, expertise: updatedExpertise }));
+  };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
@@ -103,7 +109,7 @@ const TeamMemberForm = () => {
         setSuccessMessage('Team member created successfully.');
       }
       resetForm();
-      fetchAllTeamMembers();
+      fetchAllTeamMembers(); // Fetch updated team members after submit
     } catch (error) {
       setErrorMessage('Error saving team member.');
     }
@@ -119,7 +125,7 @@ const TeamMemberForm = () => {
     try {
       await deleteTeamMember(id);
       setSuccessMessage('Team member deleted successfully.');
-      fetchAllTeamMembers();
+      fetchAllTeamMembers(); // Fetch updated list after delete
     } catch (error) {
       setErrorMessage('Error deleting team member.');
     }
@@ -138,71 +144,120 @@ const TeamMemberForm = () => {
   };
 
   return (
-    <div className="team-member-form">
+    <div className="team-member-form-container">
       <h1>{selectedTeamMemberId ? 'Edit Team Member' : 'Add Team Member'}</h1>
-      {successMessage && <p className="success">{successMessage}</p>}
-      {errorMessage && <p className="error">{errorMessage}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          placeholder="Name"
-        />
-        <input
-          type="text"
-          name="designation"
-          value={formData.designation}
-          onChange={handleInputChange}
-          placeholder="Designation"
-        />
-        {formData.expertise.map((skill, index) => (
-  <div key={index} className="expertise-field">
-    <input
-      type="text"
-      value={skill}
-      onChange={(e) => handleArrayChange(index, e.target.value)}
-      placeholder="Expertise"
-    />
-    {index === formData.expertise.length - 1 && (
-      <FaPlus
-        className="add-expertise-icon"
-        onClick={addExpertiseField}
-        title="Add Expertise"
-      />
-    )}
-  </div>
-))}
-        <input
-          type="text"
-          name="email"
-          value={formData.contactInfo.email}
-          onChange={(e) => handleNestedInputChange(e, 'contactInfo')}
-          placeholder="Email"
-        />
-        <input
-          type="text"
-          name="phone"
-          value={formData.contactInfo.phone}
-          onChange={(e) => handleNestedInputChange(e, 'contactInfo')}
-          placeholder="Phone"
-        />
-        <input type="file" onChange={handleFileChange} />
-        {previewUrl && <img src={previewUrl} alt="Preview" />}
-        <button type="submit">Save</button>
+        <div className="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder="Name"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Designation</label>
+          <input
+            type="text"
+            name="designation"
+            value={formData.designation}
+            onChange={handleInputChange}
+            placeholder="Designation"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Expertise</label>
+          {formData.expertise.map((skill, index) => (
+            <div key={index} className="expertise-field">
+              <input
+                type="text"
+                value={skill}
+                onChange={(e) => handleArrayChange(index, e.target.value)}
+                placeholder="Expertise"
+              />
+              <FaTimes
+                className="remove-expertise-icon"
+                onClick={() => removeExpertiseField(index)}
+                title="Remove Expertise"
+              />
+              {index === formData.expertise.length - 1 && (
+                <FaPlus
+                  className="add-expertise-icon"
+                  onClick={addExpertiseField}
+                  title="Add Expertise"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.contactInfo.email}
+            onChange={(e) => handleNestedInputChange(e, 'contactInfo')}
+            placeholder="Email"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Phone</label>
+          <input
+            type="text"
+            name="phone"
+            value={formData.contactInfo.phone}
+            onChange={(e) => handleNestedInputChange(e, 'contactInfo')}
+            placeholder="Phone"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Profile Picture</label>
+          <input type="file" onChange={handleFileChange} />
+          {previewUrl && <img src={previewUrl} alt="Preview" />}
+        </div>
+
+        <button type="submit">{selectedTeamMemberId ? 'Update' : 'Save'} Team Member</button>
       </form>
 
-      <h2>Team Members</h2>
-      <ul>
-        {teamMembers.map((member) => (
-          <li key={member._id}>
-            {member.name} - {member.designation}
-            <button onClick={() => handleEdit(member)}>Edit</button>
-            <button onClick={() => handleDelete(member._id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <h2>All Team Members</h2>
+<ul>
+  {teamMembers.length > 0 ? (
+    teamMembers.map((member) => (
+      <li key={member._id} className="team-member-item">
+        <div className="team-member-info">
+          <strong>{member.name}</strong> - {member.designation}
+        </div>
+        
+        {/* Display additional information */}
+        <div className="team-member-details">
+          <p><strong>Expertise:</strong> {member.expertise.join(', ')}</p>
+          <p><strong>Email:</strong> {member.contactInfo.email}</p>
+          <p><strong>Phone:</strong> {member.contactInfo.phone}</p>
+          
+        </div>
+
+        {/* Action buttons */}
+        <div className="actions">
+          <FaEdit className="edit-icon" onClick={() => handleEdit(member)} title="Edit Member" />
+          <FaTrash className="delete-icon" onClick={() => handleDelete(member._id)} title="Delete Member" />
+        </div>
+      </li>
+    ))
+  ) : (
+    <p>No team members available.</p>
+  )}
+</ul>
+
     </div>
   );
 };

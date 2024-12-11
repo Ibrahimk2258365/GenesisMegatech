@@ -1,9 +1,71 @@
-.navbar-brand span {
-    font-size: 1.5rem;
-    color: #333;
+/* General Styles for the Navbar */
+.navbar {
+  background-color: #1a1a1a; /* Dark background for a sleek look */
+  padding: 1.2rem 0;
+  transition: background-color 0.3s ease;
+}
+
+.navbar:hover {
+  background-color: #333; /* Darken on hover */
+}
+
+.navbar-logo {
+  height: 40px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.1); /* Logo slightly enlarges on hover */
+}
+
+.navbar-title {
+  font-size: 1.7rem;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.navbar-nav .nav-link {
+  color: #bbb;
+  font-size: 1.1rem;
+  margin-right: 20px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ff6f61; /* Hover color with smooth transition */
+  transform: translateY(-3px); /* Lift effect */
+}
+
+.navbar-nav .nav-link.active {
+  color: #fff;
+  font-weight: bold;
+  /* border-bottom: 2px solid #ff6f61; Add underline for active link */
+}
+
+.navbar-toggler-icon {
+  background-color: #fff;
+}
+
+/* Making the Navbar Fully Responsive */
+@media (max-width: 992px) {
+  .navbar {
+    background-color: #1a1a1a; /* Keep navbar dark even on small screens */
   }
-  
-  .container-fluid {
-    margin-bottom: 110px;
+
+  .navbar-nav {
+    margin-top: 1rem;
   }
-  
+
+  .navbar-nav .nav-link {
+    font-size: 1.2rem;
+    padding: 10px 0;
+  }
+}
+
+.container-fluid {
+  padding: 0;
+  margin-bottom: 120px; /* To prevent content from being hidden behind the fixed navbar */
+}

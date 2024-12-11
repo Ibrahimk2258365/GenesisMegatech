@@ -10,6 +10,7 @@ const FAQManager = () => {
   const [currentFAQId, setCurrentFAQId] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // For loading state
 
   // Fetch FAQs on component mount
   useEffect(() => {
@@ -17,11 +18,14 @@ const FAQManager = () => {
   }, []);
 
   const fetchFAQs = async () => {
+    setIsLoading(true);
     try {
       const data = await getFAQs();
       setFaqs(data);
     } catch (error) {
       console.error('Error fetching FAQs:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -32,6 +36,7 @@ const FAQManager = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       if (isEdit) {
         await updateFAQ(currentFAQId, formData);
@@ -48,6 +53,8 @@ const FAQManager = () => {
     } catch (error) {
       setErrorMessage(error.response?.data?.message || 'Failed to save FAQ');
       setSuccessMessage('');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -58,14 +65,15 @@ const FAQManager = () => {
   };
 
   const handleDelete = async (id) => {
+    setIsLoading(true);
     try {
       await deleteFAQ(id);
       setSuccessMessage('FAQ deleted successfully!');
-      setErrorMessage('');
       fetchFAQs();
     } catch (error) {
       setErrorMessage('Failed to delete FAQ');
-      setSuccessMessage('');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -74,6 +82,7 @@ const FAQManager = () => {
       <h2>{isEdit ? 'Edit FAQ' : 'Add FAQ'}</h2>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+      
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="question">Question</label>
@@ -98,35 +107,41 @@ const FAQManager = () => {
             required
           />
         </div>
-        <button type="submit">{isEdit ? 'Update FAQ' : 'Add FAQ'}</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Processing...' : isEdit ? 'Update FAQ' : 'Add FAQ'}
+        </button>
       </form>
 
       <h2>All FAQs</h2>
-      <ul className="faq-list">
-        {faqs.map((faq) => (
-          <li key={faq._id} className="faq-item">
-            <div className="faq-content">
-              <strong>Q:</strong> {faq.question}
-              <br />
-              <strong>A:</strong> {faq.answer}
-            </div>
-            <div className="faq-actions">
-              <button
-                className="edit-btn"
-                onClick={() => handleEdit(faq)}
-              >
-                <FaEdit />
-              </button>
-              <button
-                className="delete-btn"
-                onClick={() => handleDelete(faq._id)}
-              >
-                <FaTrash />
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {isLoading ? (
+        <p>Loading FAQs...</p>
+      ) : (
+        <ul className="faq-list">
+          {faqs.map((faq) => (
+            <li key={faq._id} className="faq-item">
+              <div className="faq-content">
+                <strong>Q:</strong> {faq.question}
+                <br />
+                <strong>A:</strong> {faq.answer}
+              </div>
+              <div className="faq-actions">
+                <button
+                  className="edit-btn"
+                  onClick={() => handleEdit(faq)}
+                >
+                  <FaEdit />
+                </button>
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(faq._id)}
+                >
+                  <FaTrash />
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

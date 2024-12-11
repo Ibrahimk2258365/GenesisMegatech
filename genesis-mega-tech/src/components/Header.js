@@ -2,19 +2,18 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
 
-
 const Header = () => {
   return (
     <div className="container-fluid">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
           <a className="navbar-brand d-flex align-items-center" href="/">
             <img
-              src="/logo.png" 
-              alt="Logo" 
-              style={{ height: '40px', marginRight: '10px' }} 
+              src="/logo.png"
+              alt="Logo"
+              className="navbar-logo"
             />
-            <span><b>GENESISMEGATECH</b></span>
+            <span className="navbar-title"><b>GENESISMEGATECH</b></span>
           </a>
           <button
             className="navbar-toggler"

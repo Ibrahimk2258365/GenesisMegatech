@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { registerUser } from '../services/api';
+import './Register.css'; // CSS file for styling
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,9 @@ const Register = () => {
     password: '',
     role: 'User',
   });
+
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,19 +22,57 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await registerUser(formData);
-      alert(response.message);
+      setSuccessMessage(response.message);
+      setErrorMessage('');
     } catch (err) {
-      console.error(err.response?.data?.error || 'Something went wrong');
+      setErrorMessage(err.response?.data?.error || 'Something went wrong');
+      setSuccessMessage('');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="name" onChange={handleChange} placeholder="Name" required />
-      <input name="email" onChange={handleChange} placeholder="Email" required />
-      <input name="password" onChange={handleChange} type="password" placeholder="Password" required />
-      <button type="submit">Register</button>
-    </form>
+    <div className="register-container">
+      <h2>Register</h2>
+      {successMessage && <div className="success-message">{successMessage}</div>}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      <form onSubmit={handleSubmit} className="register-form">
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            onChange={handleChange}
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={handleChange}
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={handleChange}
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <button type="submit" className="submit-button">
+          Register
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTeam } from "../services/api";
-import './Team.css'
+import './Team.css';
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -31,11 +31,13 @@ const Team = () => {
   }
 
   return (
-    <div className="centered-content">
-      <h2>Our Team</h2>
-      <p>Meet the dedicated team members who drive our success.</p>
+    <div className="team-page">
+      <section className="team-header">
+        <h2>Our Team</h2>
+        <p>Meet the passionate individuals who power our vision and success.</p>
+      </section>
 
-      <div className="team-grid">
+      <section className="team-grid">
         {teamMembers.length > 0 ? (
           teamMembers.map((member) => (
             <div key={member._id} className="team-card">
@@ -48,12 +50,18 @@ const Team = () => {
               </div>
               <h3 className="team-name">{member.name}</h3>
               <p className="team-position">{member.designation}</p>
+              <button
+                className="view-profile"
+                onClick={() => alert(`Viewing profile of ${member.name}`)}
+              >
+                View Profile
+              </button>
             </div>
           ))
         ) : (
           <p className="no-members">No team members found.</p>
         )}
-      </div>
+      </section>
     </div>
   );
 };

@@ -24,50 +24,66 @@ const Home = () => {
   }
 
   if (!homeData) {
-    return <div className="centered-content">Loading...</div>;
+    return <div className="centered-content loading">Loading...</div>;
   }
 
   return (
     <div className="centered-content">
-      <div className="section banner">
-        <h1>{homeData.title}</h1>
-        <h2>{homeData.subtitle}</h2>
-        <img
-          src={homeData.bannerImageUrl}
-          alt="Banner"
-          className="banner-image"
-        />
-      </div>
+      {/* Banner Section */}
+      <section className="banner">
+        <div className="banner-content">
+          <h1>{homeData.title}</h1>
+          <h2>{homeData.subtitle}</h2>
+          <img
+            src={homeData.bannerImageUrl}
+            alt="Banner"
+            className="banner-image"
+          />
+        </div>
+      </section>
 
-      <div className="section">
-        <h3>Mission</h3>
-        <p>{homeData.missionStatement}</p>
-      </div>
+      {/* Mission Section */}
+      <section className="mission">
+        <div className="content-wrapper">
+          <h3>Our Mission</h3>
+          <p>{homeData.missionStatement}</p>
+        </div>
+      </section>
 
-      <div className="section">
-        <h3>Vision</h3>
-        <p>{homeData.visionStatement}</p>
-      </div>
+      {/* Vision Section */}
+      <section className="vision">
+        <div className="content-wrapper">
+          <h3>Our Vision</h3>
+          <p>{homeData.visionStatement}</p>
+        </div>
+      </section>
 
-      <div className="section">
-        <h3>Key Highlights</h3>
-        <ul>
-          {homeData.keyHighlights.map((highlight, index) => (
-            <li key={index}>{highlight}</li>
-          ))}
-        </ul>
-      </div>
+      {/* Key Highlights Section */}
+      <section className="key-highlights">
+        <div className="content-wrapper">
+          <h3>Key Highlights</h3>
+          <ul>
+            {homeData.keyHighlights.map((highlight, index) => (
+              <li key={index}>{highlight}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-      <div className="call-to-action">
-        <a
-          href={homeData.callToActionLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cta-button"
-        >
-          {homeData.callToActionText}
-        </a>
-      </div>
+      {/* Call-to-Action Section */}
+      <section className="call-to-action">
+        <div className="content-wrapper">
+          <h3>Join Us</h3>
+          <a
+            href={homeData.callToActionLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta-button"
+          >
+            {homeData.callToActionText}
+          </a>
+        </div>
+      </section>
     </div>
   );
 };

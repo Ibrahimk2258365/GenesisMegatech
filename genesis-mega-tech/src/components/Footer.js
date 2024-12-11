@@ -10,12 +10,12 @@ import {
   faGithub,
 } from '@fortawesome/free-brands-svg-icons';
 import {
-  faGem,
   faHome,
   faEnvelope,
   faPhone,
   faPrint,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom'; // Import Link for internal routing
 import './footer.css'; // Import the CSS with animations
 
 const Footer = () => {
@@ -41,124 +41,77 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className={`text-center text-lg-start bg-body-tertiary text-muted ${
+      className={`footer text-center text-lg-start bg-dark text-muted ${
         isVisible ? 'visible' : ''
       }`}
-      style={{ marginTop: '40px' }}
     >
-      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <section className="social-media d-flex justify-content-center justify-content-lg-between p-4">
         <div className="me-5 d-none d-lg-block">
-          <span>Get connected with us on social networks:</span>
+          <span className="social-text">Connect with Genesis Mega-Tech:</span>
         </div>
-        <div>
-          <a href="/" className="me-4 text-reset">
+        <div className="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="me-4 text-reset social-icon">
             <FontAwesomeIcon icon={faFacebookF} />
           </a>
-          <a href="/" className="me-4 text-reset">
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="me-4 text-reset social-icon">
             <FontAwesomeIcon icon={faTwitter} />
           </a>
-          <a href="/" className="me-4 text-reset">
+          <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="me-4 text-reset social-icon">
             <FontAwesomeIcon icon={faGoogle} />
           </a>
-          <a href="/" className="me-4 text-reset">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="me-4 text-reset social-icon">
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a href="/" className="me-4 text-reset">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="me-4 text-reset social-icon">
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
-          <a href="https://github.com/" className="me-4 text-reset">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="me-4 text-reset social-icon">
             <FontAwesomeIcon icon={faGithub} />
           </a>
         </div>
       </section>
 
-      <section className="">
+      <section className="footer-content">
         <div className="text-center text-md-start mt-5">
           <div className="row mt-3">
-            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">
-                <FontAwesomeIcon icon={faGem} className="me-3" />
-                Mens Wear
-              </h6>
-              <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit.
-              </p>
-            </div>
-
-            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Products</h6>
-              <p>
-                <a href="#!" className="text-reset">
-                  Angular
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  React
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Vue
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Laravel
-                </a>
-              </p>
-            </div>
-
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
-              <p>
-                <a href="#!" className="text-reset">
-                  Pricing
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Settings
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Orders
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Help
-                </a>
-              </p>
-            </div>
-
-            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-              <p>
+            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 footer-item">
+              <h6 className="text-uppercase fw-bold mb-4 footer-title">
                 <FontAwesomeIcon icon={faHome} className="me-3" />
-                Mansehra,
+                Genesis Mega-Tech
+              </h6>
+              <p className="footer-description">
+                Genesis Mega-Tech is a consulting firm specializing in energy, climate change, and IT solutions, committed to delivering sustainable and secure solutions across sectors.
               </p>
-              <p>
-                <FontAwesomeIcon icon={faEnvelope} className="me-3" />
-                genesismegat@gmail.com
-              </p>
-              <p>
-                <FontAwesomeIcon icon={faPhone} className="me-3" />
-                0313-59736363
-              </p>
-              <p>
-                <FontAwesomeIcon icon={faPrint} className="me-3" />
-                0313-59736363
-              </p>
+            </div>
+
+            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 footer-item">
+              <h6 className="text-uppercase fw-bold mb-4 footer-title">Core Areas</h6>
+              <p><a href="#!" className="text-reset footer-link">Energy Solutions</a></p>
+              <p><a href="#!" className="text-reset footer-link">Climate Change</a></p>
+              <p><a href="#!" className="text-reset footer-link">IT Solutions</a></p>
+            </div>
+
+            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 footer-item">
+              <h6 className="text-uppercase fw-bold mb-4 footer-title">Useful Links</h6>
+              <p><Link to="/projects" className="text-reset footer-link">Our Projects</Link></p> {/* Link to Projects page */}
+              <p><Link to="/team" className="text-reset footer-link">Team Expertise</Link></p> {/* Link to Team Expertise page */}
+              <p><a href="#!" className="text-reset footer-link">Memberships</a></p>
+              <p><Link to="/contact" className="text-reset footer-link">Contact Us</Link></p> {/* Link to Contact Us page */}
+            </div>
+
+            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 footer-item">
+              <h6 className="text-uppercase fw-bold mb-4 footer-title">Contact</h6>
+              <p><FontAwesomeIcon icon={faHome} className="me-3" /> Islamabad, Pakistan</p>
+              <p><FontAwesomeIcon icon={faEnvelope} className="me-3" /> genesismegat@gmail.com</p>
+              <p><FontAwesomeIcon icon={faPhone} className="me-3" /> +92 321 9803861</p>
+              <p><FontAwesomeIcon icon={faPrint} className="me-3" /> +92 321 9803861</p>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-        © Copyright Genesis Mega Tech 2024
+      <div className="footer-bottom text-center p-4">
+        © 2024 Genesis Mega-Tech. All Rights Reserved.
       </div>
     </footer>
   );

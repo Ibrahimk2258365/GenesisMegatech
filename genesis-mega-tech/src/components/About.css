@@ -1,60 +1,144 @@
-.centered-content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1.5rem;
+/* Overall Page Layout */
+.about-page {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(to bottom, #162447, #1f4068);
   color: #ffffff;
-  background-color: rgba(18, 52, 86, 0.8);
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  animation: fadeIn 1s ease-in-out;
 }
 
-h2, h3 {
+/* Header Section */
+.about-page .about-header {
   text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  animation: slideDown 1s ease-in-out;
+}
+
+.about-page .about-header h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #ff9f1c;
+}
+
+.about-page .about-header .intro-text {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+/* Shared Section Styling */
+.about-page .about-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.about-page .about-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.about-page .about-section .content {
+  text-align: center;
+  max-width: 800px;
+}
+
+/* Specific Sections */
+.about-page .mission {
+  background: rgba(255, 167, 38, 0.1);
+}
+
+.about-page .vision {
+  background: rgba(77, 208, 225, 0.1);
+}
+
+.about-page .core-values {
+  background: rgba(129, 199, 132, 0.1);
+}
+
+.about-page .history {
+  background: rgba(239, 83, 80, 0.1);
+}
+
+/* Typography */
+.about-page h3 {
+  font-size: 2rem;
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
-h2 {
-  font-size: 2.5rem;
+.about-page p,
+.about-page ul {
+  font-size: 1.1rem;
+  color: #e0e0e0;
 }
 
-h3 {
-  font-size: 1.8rem;
-  margin-top: 1rem;
-}
-
-p {
-  line-height: 1.6;
-  margin: 0.5rem 0;
-}
-
-.section {
-  background-color: rgba(255, 255, 255, 0.1);
-  margin: 1rem 0;
-  padding: 1rem;
-  border-radius: 10px;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.section:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: scale(1.02);
-}
-
-ul {
+.about-page ul {
   list-style-type: disc;
-  padding-left: 1.5rem;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: left;
 }
 
-li {
-  margin: 0.5rem 0;
+.about-page li {
+  margin-bottom: 0.5rem;
+  color: #fcbf49;
   transition: color 0.3s;
 }
 
-li:hover {
-  color: #ff5722;
+.about-page li:hover {
+  color: #ff9f1c;
 }
 
-.error {
-  color: #ff0000;
+/* Error Message */
+.about-page .error {
+  color: #ff3e4d;
+  font-weight: bold;
   text-align: center;
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
 }

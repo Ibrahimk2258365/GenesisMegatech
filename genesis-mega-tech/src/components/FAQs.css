@@ -1,66 +1,95 @@
-.centered-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 1rem;
-  color: #ffffff;
+/* FAQs Container */
+.faqs-container {
+  font-family: "Poppins", sans-serif;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffffff, #f0f4f9);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
+/* FAQs Title */
+.faqs-title {
   text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #123456;
   margin-bottom: 1.5rem;
-  font-size: 2rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* FAQ List */
+.faqs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* FAQ Item */
 .faq-item {
-  margin: 1rem 0;
-  background-color: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
   border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: background-color 0.3s, transform 0.2s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .faq-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-3px);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* FAQ Question */
 .faq-question {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 1rem;
-  margin: 0;
-  background-color: #123456;
+  padding: 1rem 1.5rem;
+  background: #123456;
   color: #ffffff;
-  transition: background-color 0.3s;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .faq-question:hover {
-  background-color: #0f2a3e;
+  background: #0f2a3e;
 }
 
+/* FAQ Icon */
 .faq-icon {
   font-size: 1.5rem;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .faq-icon.rotate {
-  transform: rotate(180deg); /* Rotate icon for expanded state */
+  transform: rotate(180deg);
 }
 
+/* FAQ Answer */
 .faq-answer {
-  color: #ffffff;
-  padding: 0 1rem 1rem;
+  background: #f0f4f9;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #333333;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
   opacity: 0;
 }
 
 .faq-answer.active {
   max-height: 200px; /* Adjust based on content */
   opacity: 1;
+}
+
+/* Error and Loading States */
+.faqs-error,
+.faqs-loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff4d4d;
+  padding: 1rem;
 }

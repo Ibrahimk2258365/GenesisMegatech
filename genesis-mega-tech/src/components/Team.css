@@ -1,92 +1,135 @@
 /* General Styles */
-.centered-content {
-    max-width: 1000px; /* Reduced max-width for a more compact layout */
-    margin: 0 auto;
-    padding: 1rem;
-    color: #ffffff;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 0.8rem; /* Reduced bottom margin */
-    font-size: 2rem; /* Smaller font size */
-  }
-  
-  p {
-    text-align: center;
-    margin-bottom: 1.5rem; /* Reduced bottom margin */
-    font-size: 1rem; /* Smaller font size */
-  }
-  
-  .error-message {
-    color: #ff0000;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  /* Team Grid */
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Smaller min column width */
-    gap: 1rem; /* Reduced gap */
-    margin-top: 1.5rem; /* Reduced top margin */
-  }
-  
-  /* Team Card */
-  .team-card {
-    border: 1px solid #ddd;
-    border-radius: 6px; /* Smaller border-radius */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow */
-    padding: 0.8rem; /* Reduced padding */
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.1);
+.team-page {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  background: linear-gradient(to bottom, #1d3557, #457b9d);
+  padding: 2rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Header Section */
+.team-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.team-header h2 {
+  font-size: 2.5rem;
+  color: #ff6b6b;
+  margin-bottom: 1rem;
+}
+
+.team-header p {
+  font-size: 1.2rem;
+  color: #e9ecef;
+}
+
+/* Team Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+/* Team Card */
+.team-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Container */
+.image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* Keeps the shape square */
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.team-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-card:hover .team-image {
+  transform: scale(1.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Team Info */
+.team-name {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: #ff6b6b;
+}
+
+.team-position {
+  font-size: 1rem;
+  color: #a8dadc;
+  margin-bottom: 1rem;
+}
+
+/* Button Styling */
+.view-profile {
+  background: #ff6b6b;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.view-profile:hover {
+  background: #e63946;
+  transform: translateY(-2px);
+}
+
+/* Loading and Error Messages */
+.loading, .error-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.error-message {
+  color: #e63946;
+}
+
+/* No Members Found */
+.no-members {
+  text-align: center;
+  color: #ffffff;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .team-card:hover {
-    transform: translateY(-4px); /* Slightly smaller hover effect */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Image Styling */
-  .image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%; /* Keeps square shape */
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 0.8rem; /* Reduced bottom margin */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .team-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .team-card:hover .team-image {
-    transform: scale(1.08); /* Slightly smaller scale */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Team Info */
-  .team-name {
-    font-size: 1.2rem; /* Reduced font size */
-    margin-top: 0.3rem; /* Reduced margin */
-  }
-  
-  .team-position {
-    font-size: 0.9rem; /* Reduced font size */
-    color: #777;
-  }
-  
-  .no-members {
-    font-size: 0.9rem; /* Reduced font size */
-    color: #555;
-  }
-  
+}

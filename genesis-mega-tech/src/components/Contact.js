@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import "./contact.css";
 
 const ContactUs = () => {
+  const [formStatus, setFormStatus] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -14,109 +17,74 @@ const ContactUs = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
-      body: json
+      body: json,
     }).then((res) => res.json());
 
     if (res.success) {
-      console.log("Success", res);
+      setFormStatus("success");
+      e.target.reset();
+    } else {
+      setFormStatus("error");
     }
   };
 
   return (
-    <div className="centered-content">
-      <h2>Contact Us</h2>
-      <p>If you have any questions or inquiries, feel free to reach out to us using the form below.</p>
+    <div className="contact-container">
+      <div className="contact-header">
+        <h2>Get in Touch</h2>
+        <p>We’d love to hear from you! Fill out the form below and we’ll get back to you as soon as possible.</p>
+      </div>
 
-      <form className="contact-form" style={styles.contactForm} onSubmit={handleSubmit}>
-        <div className="form-group" style={styles.formGroup}>
-          <label htmlFor="name" style={styles.label}>Name</label>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             name="name"
-            className="form-control"
             id="name"
             placeholder="Enter your name"
-            style={styles.input}
             required
           />
         </div>
-        <div className="form-group" style={styles.formGroup}>
-          <label htmlFor="email" style={styles.label}>Email</label>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
-            className="form-control"
             id="email"
             placeholder="Enter your email"
-            style={styles.input}
             required
           />
         </div>
-        <div className="form-group" style={styles.formGroup}>
-          <label htmlFor="message" style={styles.label}>Message</label>
+        <div className="form-group">
+          <label htmlFor="message">Message</label>
           <textarea
-            name="message" // Required for Web3Forms
-            className="form-control"
+            name="message"
             id="message"
-            rows="4"
             placeholder="Type your message here"
-            style={styles.textarea}
+            rows="5"
             required
           ></textarea>
         </div>
-        <button type="submit" style={styles.button}>
+        <button type="submit" className="submit-btn">
           Send Message
         </button>
       </form>
+
+      {formStatus === "success" && (
+        <div className="form-status success">
+          Your message has been sent successfully. Thank you!
+        </div>
+      )}
+      {formStatus === "error" && (
+        <div className="form-status error">
+          Oops! Something went wrong. Please try again.
+        </div>
+      )}
     </div>
   );
-};
-
-// Inline Styles
-const styles = {
-  contactForm: {
-    width: "100%",
-    maxWidth: "600px",
-    margin: "0 auto",
-  },
-  formGroup: {
-    marginBottom: "1.5rem",
-  },
-  label: {
-    display: "block",
-    marginBottom: "0.5rem",
-    fontWeight: "bold",
-  },
-  input: {
-    width: "100%",
-    padding: "0.5rem",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    fontSize: "1rem",
-  },
-  textarea: {
-    width: "100%",
-    padding: "0.5rem",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    fontSize: "1rem",
-    resize: "none",
-  },
-  button: {
-    width: "100%",
-    backgroundColor: "#007bff",
-    color: "white",
-    fontWeight: "bold",
-    border: "none",
-    padding: "0.75rem",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-  buttonHover: {
-    backgroundColor: "#0056b3",
-  },
 };
 
 export default ContactUs;

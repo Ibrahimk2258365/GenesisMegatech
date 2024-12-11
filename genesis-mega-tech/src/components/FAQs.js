@@ -11,7 +11,7 @@ const FAQs = () => {
     const fetchFAQs = async () => {
       try {
         const data = await getFAQs();
-        setFaqData(data); // Populate state with FAQ data
+        setFaqData(data);
       } catch (error) {
         setErrorMessage("Failed to load FAQs. Please try again later.");
       }
@@ -25,36 +25,38 @@ const FAQs = () => {
   };
 
   if (errorMessage) {
-    return <div className="centered-content error">{errorMessage}</div>;
+    return <div className="faqs-error">{errorMessage}</div>;
   }
 
   if (!faqData.length) {
-    return <div className="centered-content">Loading FAQs...</div>;
+    return <div className="faqs-loading">Loading FAQs...</div>;
   }
 
   return (
-    <div className="centered-content">
-      <h2>Frequently Asked Questions</h2>
-      {faqData.map((faq, index) => (
-        <div className="faq-item" key={faq._id}>
-          <div
-            className="faq-question"
-            onClick={() => toggleFAQ(index)}
-          >
-            {faq.question}
-            <span
-              className={`faq-icon ${activeIndex === index ? "rotate" : ""}`}
+    <div className="faqs-container">
+      <h2 className="faqs-title">Frequently Asked Questions</h2>
+      <div className="faqs-list">
+        {faqData.map((faq, index) => (
+          <div className="faq-item" key={faq._id}>
+            <div
+              className="faq-question"
+              onClick={() => toggleFAQ(index)}
             >
-              {activeIndex === index ? "▼" : "▶"} {/* Using simple arrow icons */}
-            </span>
+              <span>{faq.question}</span>
+              <span
+                className={`faq-icon ${activeIndex === index ? "rotate" : ""}`}
+              >
+                {activeIndex === index ? "▲" : "▼"}
+              </span>
+            </div>
+            <div
+              className={`faq-answer ${activeIndex === index ? "active" : ""}`}
+            >
+              {faq.answer}
+            </div>
           </div>
-          <div
-            className={`faq-answer ${activeIndex === index ? "active" : ""}`}
-          >
-            {faq.answer}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

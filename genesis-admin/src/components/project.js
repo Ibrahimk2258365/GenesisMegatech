@@ -6,8 +6,9 @@ const ProjectForm = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    images: [], // To store image files
+    images: [],
   });
+  const [imagePreviews, setImagePreviews] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -41,17 +42,16 @@ const ProjectForm = () => {
       ...prev,
       images: [...prev.images, ...files],
     }));
+    const previews = files.map((file) => URL.createObjectURL(file));
+    setImagePreviews((prev) => [...prev, ...previews]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const projectData = new FormData();
-
     projectData.append('title', formData.title);
     projectData.append('description', formData.description);
-    formData.images.forEach((file) => {
-      projectData.append('images', file);
-    });
+    formData.images.forEach((file) => projectData.append('images', file));
 
     try {
       if (isEditMode) {
@@ -96,12 +96,14 @@ const ProjectForm = () => {
         </div>
         <div className="form-group">
           <label>Upload Images</label>
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={handleFileChange}
-          />
+          <input type="file" multiple accept="image/*" onChange={handleFileChange} />
+          <div className="image-preview-container">
+            {imagePreviews.map((src, index) => (
+              <div key={index} className="image-preview">
+                <img src={src} alt={`Preview ${index + 1}`} />
+              </div>
+            ))}
+          </div>
         </div>
         <button type="submit">{isEditMode ? 'Update Project' : 'Save Project'}</button>
       </form>

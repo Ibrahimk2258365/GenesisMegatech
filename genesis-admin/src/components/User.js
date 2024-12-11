@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAllUsers } from '../services/api';
+import './UserList.css'; // Link the CSS file here
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -18,61 +19,26 @@ const UserList = () => {
   }, []);
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.header}>User List</h2>
-      <table style={styles.table}>
+    <div className="container">
+      <h2>User List</h2>
+      <table>
         <thead>
           <tr>
-            <th style={styles.th}>Name</th>
-            <th style={styles.th}>Email</th>
+            <th>Name</th>
+            <th>Email</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user._id} style={styles.tr}>
-              <td style={styles.td}>{user.name}</td>
-              <td style={styles.td}>{user.email}</td>
+            <tr key={user._id}>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    margin: '20px auto',
-    maxWidth: '600px',
-    textAlign: 'center',
-    fontFamily: 'Arial, sans-serif',
-  },
-  header: {
-    color: '#333',
-  },
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse',
-    marginTop: '10px',
-  },
-  th: {
-    backgroundColor: '#f4f4f4',
-    color: '#333',
-    padding: '10px',
-    border: '1px solid #ddd',
-  },
-  tr: {
-    transition: 'background-color 0.3s',
-  },
-  td: {
-    padding: '10px',
-    border: '1px solid #ddd',
-    textAlign: 'left',
-  },
-  trHover: {
-    backgroundColor: '#f9f9f9',
-    cursor: 'pointer',
-  },
 };
 
 export default UserList;

@@ -1,12 +1,121 @@
-/* Footer Animation */
-footer {
-    opacity: 0;
-    transform: translateY(100px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-  
-  footer.visible {
+/* Footer Base Styles */
+.footer {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.footer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer .footer-item {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.footer.visible .footer-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.footer .footer-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.footer .footer-description {
+  font-size: 0.95rem;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+.footer .footer-link {
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.footer .footer-link:hover {
+  color: #ff6f61; /* Red color for hover effect */
+}
+
+.footer .footer-bottom {
+  background-color: #222;
+  color: #fff;
+  font-size: 1rem;
+  padding: 20px 0;
+}
+
+.footer .social-media {
+  background-color: #333;
+  padding: 20px 0;
+  border-bottom: 2px solid #444;
+}
+
+.footer .social-text {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.footer .social-icons .social-icon {
+  font-size: 1.5rem;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.footer .social-icons .social-icon:hover {
+  color: #ff6f61;
+  transform: scale(1.2);
+}
+
+.footer .footer-item {
+  margin-bottom: 30px;
+}
+
+/* Ensure no global styles overwrite footer-specific styles */
+footer h6, footer p {
+  margin: 0;
+}
+
+/* Scoped styles for heading and paragraph within the footer */
+.footer h6 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.footer p {
+  font-size: 0.95rem;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .footer .footer-item {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
-  
+}
+
+/* Style for social media icons */
+.social-icon {
+  font-size: 24px;
+  color: white;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for social media icons */
+.social-icon:hover {
+  color: #007bff; /* Change color on hover (you can choose any color you like) */
+  transform: scale(1.1); /* Slightly scale up the icon on hover */
+}
+
+/* Optional: Hover effect for the text */
+.social-text:hover {
+  color: #007bff; /* Color change for the 'Connect with' text */
+}
+
