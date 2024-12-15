@@ -18,7 +18,7 @@ const App = () => {
       {/* Admin Authentication Routes */}
       <Route path="/login" element={<Login />} />
 
-      {/* Protected Dashboard Routes */}
+      {/* Protected Routes */}
       <Route
         path="/"
         element={
@@ -27,16 +27,20 @@ const App = () => {
           </PrivateRoute>
         }
       >
-        <Route path="content" element={<ContentManager />} />
+        {/* Default Route to User Component */}
+        <Route index element={<User />} />
+
+        {/* Nested Routes for Dashboard */}
         <Route path="user" element={<User />} />
+        <Route path="content" element={<ContentManager />} />
         <Route path="register" element={<Register />} />
         <Route path="faqs" element={<FAQForm />} />
         <Route path="about" element={<AboutForm />} />
         <Route path="team" element={<TeamMemberForm />} />
         <Route path="project" element={<ProjectForm />} />
-        <Route path="/projects" element={<ProjectList />} />
-        <Route path="/projects/new" element={<ProjectForm />} />
-        <Route path="/projects/:id" element={<ProjectForm />} />
+        <Route path="projects" element={<ProjectList />} />
+        <Route path="projects/new" element={<ProjectForm />} />
+        <Route path="projects/:id" element={<ProjectForm />} />
       </Route>
     </Routes>
   );

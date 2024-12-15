@@ -8,16 +8,17 @@
 /* Body Styling */
 .login-container {
     font-family: 'Arial', sans-serif;
-    background-color: #2c3e50; /* Dark background for a more professional look */
+    background-color: #2c3e50; 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    color: #ecf0f1; /* Light text color for contrast */
+    color: #ecf0f1; 
+    padding: 10px;
+    flex-direction: column; /* Stack elements vertically */
 }
 
-/* Title Animation */
 /* Title Animation */
 .animated-title {
     font-size: 32px;
@@ -29,7 +30,16 @@
     overflow: hidden;
     border-right: 4px solid #ecf0f1;
     width: 0;
-    animation: typing 3s steps(20) 1s forwards, blink 0.75s step-end infinite; /* 20 steps */
+    animation: typing 3s steps(20) 1s forwards, blink 0.75s step-end 1; /* Updated to 20 steps and no infinite blink */
+}
+
+/* Mobile Title Behavior */
+.mobile-title {
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: center;
+    border-right: none;
+    animation: none;
 }
 
 /* Typing Animation */
@@ -38,7 +48,7 @@
         width: 0;
     }
     to {
-        width: 24%;
+        width: 40%; /* Adjust to give space to the form */
     }
 }
 
@@ -52,24 +62,16 @@
     }
 }
 
-
-/* Blink Cursor Animation */
-@keyframes blink {
-    50% {
-        border-color: transparent;
-    }
-}
-
 /* Admin Login Card */
 .form1 {
-    margin-left: 50px;
-    background-color: #34495e; /* Darker card for emphasis */
+    background-color: #34495e;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
     text-align: center;
+    margin-top: 20px; /* Add space above the form */
     transition: transform 0.3s ease-in-out;
     animation: fadeIn 1s ease-out;
 }
@@ -135,4 +137,62 @@ button:focus {
     color: #e74c3c;
     font-size: 14px;
     margin-top: 10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px;
+    }
+
+    .form1 {
+        margin-left: 0;
+        padding: 30px;
+        max-width: 100%;
+        width: 90%;
+    }
+
+    .animated-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        width: 100%; /* Ensure the title takes up full width */
+        text-align: center; /* Center the title */
+        border-right: none; /* No border right */
+        animation: none; /* No animation on mobile */
+    }
+
+    .login-input {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .login-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .form1 {
+        padding: 30px;
+        margin-top: 0; /* Remove margin for tighter alignment */
+    }
+}
+
+/* Extra Small Devices (Mobile Portrait) */
+@media (max-width: 480px) {
+    .animated-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .login-input {
+        padding: 10px;
+    }
+
+    .login-btn {
+        padding: 10px;
+    }
+
+    .form1 {
+        padding: 20px;
+    }
 }
