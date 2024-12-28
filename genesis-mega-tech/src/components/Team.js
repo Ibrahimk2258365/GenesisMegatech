@@ -43,7 +43,7 @@ const Team = () => {
             <div key={member._id} className="team-card">
               <div className="image-container">
                 <img
-                  src={`http://localhost:5001${member.profilePictureUrl || "/uploads/default.jpg"}`}
+                  src={`https://genesisback-39365de31ea7.herokuapp.com${member.profilePictureUrl || "/uploads/default.jpg"}`}
                   alt={member.name}
                   className="team-image"
                 />
