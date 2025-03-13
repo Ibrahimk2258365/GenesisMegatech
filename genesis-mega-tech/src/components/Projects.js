@@ -43,7 +43,7 @@ const Projects = () => {
             <div key={project.id} className="project-card">
               <div className="image-container">
                 <img
-                  src={`https://genesisback-39365de31ea7.herokuapp.com${project.images || "/uploads/default.jpg"}`}
+                  src={`https://genesismegatech.onrender.com${project.images || "/uploads/default.jpg"}`}
                   alt={project.title}
                   className="project-image"
                 />
