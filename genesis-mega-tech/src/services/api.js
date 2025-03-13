@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for the main API
-const BASE_URL = 'https://genesisback-39365de31ea7.herokuapp.com/api';
+const BASE_URL = 'https://genesismegatech.onrender.com/api';
 
 // Axios instance for default configuration
 const api = axios.create({
