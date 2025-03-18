@@ -43,7 +43,7 @@ const Team = () => {
             <div key={member._id} className="team-card">
               <div className="image-container">
                 <img
-                  src={`https://genesismegatech.onrender.com${member.profilePictureUrl || "/uploads/default.jpg"}`}
+                  src={`https://ingenious-quietude-production.up.railway.app${member.profilePictureUrl || "/uploads/default.jpg"}`}
                   alt={member.name}
                   className="team-image"
                 />
