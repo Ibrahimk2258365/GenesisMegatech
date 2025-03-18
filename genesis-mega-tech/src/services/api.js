@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for the main API
-const BASE_URL = 'https://genesismegatech.onrender.com/api';
+const BASE_URL = 'https://ingenious-quietude-production.up.railway.app/api';
 
 // Axios instance for default configuration
 const api = axios.create({
