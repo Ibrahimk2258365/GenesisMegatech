@@ -17,12 +17,17 @@ app.use(express.json()); // To parse JSON payloads
 app.use(bodyParser.urlencoded({ extended: false })); // To parse URL-encoded payloads
 
 // Database Connection
-mongoose.connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-    .then(() => console.log('DB Connected.'))
-    .catch((e) => console.error('DB Connection Error:', e));
+// mongoose.connect(process.env.MONGODB_URL, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// })
+//     .then(() => console.log('DB Connected.'))
+//     .catch((e) => console.error('DB Connection Error:', e));
+
+// Database Connection
+mongoose.connect(process.env.MONGODB_URL)
+    .then(() => console.log('✅ DB Connected Successfully.'))
+    .catch((err) => console.error('❌ DB Connection Error:', err));
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
